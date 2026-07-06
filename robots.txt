@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://enzo09g.github.io/mi-portfolio/sitemap.xml

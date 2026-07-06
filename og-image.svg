@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Enzo Gomez portfolio preview</title>
+  <desc id="desc">Dark blue portfolio preview for Enzo Gomez, IT Technician and Web Developer.</desc>
+  <rect width="1200" height="630" fill="#07111f"/>
+  <g opacity="0.18" stroke="#64ffda" stroke-width="1">
+    <path d="M0 80h1200M0 160h1200M0 240h1200M0 320h1200M0 400h1200M0 480h1200M0 560h1200"/>
+    <path d="M80 0v630M160 0v630M240 0v630M320 0v630M400 0v630M480 0v630M560 0v630M640 0v630M720 0v630M800 0v630M880 0v630M960 0v630M1040 0v630M1120 0v630"/>
+  </g>
+  <circle cx="865" cy="160" r="330" fill="#64ffda" opacity="0.08"/>
+  <text x="96" y="250" fill="#eef6ff" font-family="Inter, Arial, sans-serif" font-size="94" font-weight="800">Enzo Gomez</text>
+  <text x="102" y="324" fill="#b5c7d9" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="700">IT Technician &amp; Web Developer</text>
+  <text x="104" y="408" fill="#8ea3b8" font-family="Inter, Arial, sans-serif" font-size="30">Web development - IT support - Networking</text>
+  <text x="104" y="492" fill="#64ffda" font-family="JetBrains Mono, Consolas, monospace" font-size="24" font-weight="700">github.com/enzo09g</text>
+</svg>
