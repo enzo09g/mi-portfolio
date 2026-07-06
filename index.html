@@ -9,6 +9,9 @@
     />
     <meta name="theme-color" content="#07111f" />
     <title>Enzo Gomez | IT Technician & Web Developer</title>
+    <script>
+      document.documentElement.classList.add("has-js");
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -21,7 +24,7 @@
     <a class="skip-link" href="#content" data-i18n="skip">Skip to content</a>
 
     <div class="shell">
-      <header class="intro" aria-label="Personal introduction">
+      <header class="intro" aria-label="Personal introduction" data-i18n-aria-label="introLabel">
         <div class="intro-main">
           <h1>Enzo Gomez</h1>
           <h2 data-i18n="role">IT Technician & Web Developer</h2>
@@ -30,7 +33,7 @@
           </p>
         </div>
 
-        <nav class="site-nav" aria-label="Primary navigation">
+        <nav class="site-nav" aria-label="Primary navigation" data-i18n-aria-label="navLabel">
           <a href="#about"><span></span><b data-i18n="navAbout">About</b></a>
           <a href="#experience"><span></span><b data-i18n="navExperience">Experience</b></a>
           <a href="#projects"><span></span><b data-i18n="navProjects">Projects</b></a>
@@ -38,18 +41,18 @@
           <a href="#contact"><span></span><b data-i18n="navContact">Contact</b></a>
         </nav>
 
-        <div class="controls" aria-label="Display settings">
-          <button class="toggle-button" type="button" data-lang-toggle aria-label="Switch language">
+        <div class="controls" aria-label="Display settings" data-i18n-aria-label="controlsGroupLabel">
+          <button class="toggle-button" type="button" data-lang-toggle aria-label="Language: English. Switch to Spanish." aria-pressed="false">
             <span data-i18n="languageLabel">Language</span>
             <strong data-lang-current>EN</strong>
           </button>
-          <button class="toggle-button" type="button" data-theme-toggle aria-label="Switch color theme">
+          <button class="toggle-button" type="button" data-theme-toggle aria-label="Theme: Dark. Switch to light mode." aria-pressed="true">
             <span data-i18n="themeLabel">Theme</span>
             <strong data-theme-current>Dark</strong>
           </button>
         </div>
 
-        <ul class="socials" aria-label="Social links">
+        <ul class="socials" aria-label="Social links" data-i18n-aria-label="socialsLabel">
           <li>
             <a href="mailto:enzogomez.dev@gmail.com">Email</a>
           </li>
@@ -64,7 +67,7 @@
 
       <main id="content" class="content">
         <section id="about" class="section reveal">
-          <p class="section-kicker" data-i18n="aboutKicker">About</p>
+          <h2 class="section-kicker" data-i18n="aboutKicker">About</h2>
           <h3 data-i18n="aboutTitle">Practical IT support and web development for real businesses.</h3>
           <div class="prose">
             <p data-i18n="aboutOne">
@@ -83,7 +86,7 @@
         </section>
 
         <section id="experience" class="section reveal">
-          <p class="section-kicker" data-i18n="experienceKicker">Experience</p>
+          <h2 class="section-kicker" data-i18n="experienceKicker">Experience</h2>
           <article class="experience-card">
             <p class="date-range" data-i18n="experienceDate">2024 - Present</p>
             <div>
@@ -110,7 +113,7 @@
         </section>
 
         <section id="projects" class="section reveal">
-          <p class="section-kicker" data-i18n="projectsKicker">Projects</p>
+          <h2 class="section-kicker" data-i18n="projectsKicker">Projects</h2>
           <div class="project-list">
             <article class="project-card">
               <p class="project-type" data-i18n="projectCompanyType">Business website</p>
@@ -191,7 +194,7 @@
         </section>
 
         <section id="skills" class="section reveal">
-          <p class="section-kicker" data-i18n="skillsKicker">Skills</p>
+          <h2 class="section-kicker" data-i18n="skillsKicker">Skills</h2>
           <div class="skill-grid">
             <article>
               <h3 data-i18n="skillFrontendTitle">Frontend</h3>
@@ -217,10 +220,10 @@
         </section>
 
         <section id="contact" class="section contact-section reveal">
-          <p class="section-kicker" data-i18n="contactKicker">Contact</p>
+          <h2 class="section-kicker" data-i18n="contactKicker">Contact</h2>
           <h3 data-i18n="contactTitle">Open to remote web development and IT support work.</h3>
           <p data-i18n="contactCopy">
-            If you need someone who can move between frontend code, practical support, and network troubleshooting,
+            If you need someone who can move between web development, practical support, and network troubleshooting,
             send me a message.
           </p>
           <div class="contact-actions">

@@ -10,6 +10,10 @@ const translations = {
     navContact: "Contact",
     languageLabel: "Language",
     themeLabel: "Theme",
+    introLabel: "Personal introduction",
+    navLabel: "Primary navigation",
+    controlsGroupLabel: "Display settings",
+    socialsLabel: "Social links",
     aboutKicker: "About",
     aboutTitle: "Practical IT support and web development for real businesses.",
     aboutOne:
@@ -60,12 +64,21 @@ const translations = {
     contactKicker: "Contact",
     contactTitle: "Open to remote web development and IT support work.",
     contactCopy:
-      "If you need someone who can move between frontend code, practical support, and network troubleshooting, send me a message.",
+      "If you need someone who can move between web development, practical support, and network troubleshooting, send me a message.",
     emailMe: "Email me",
     downloadCv: "Download CV",
     footer: "Designed and built by Enzo Gomez. Grounded in real IT field work and web development practice.",
     themeDark: "Dark",
     themeLight: "Light",
+    languageEnglish: "English",
+    languageSpanish: "Spanish",
+    switchToEnglish: "switch to English",
+    switchToSpanish: "switch to Spanish",
+    themeLabelDark: "Dark",
+    themeLabelLight: "Light",
+    switchToDark: "switch to dark mode",
+    switchToLight: "switch to light mode",
+    opensNewTab: "opens in a new tab",
   },
   es: {
     skip: "Saltar al contenido",
@@ -78,6 +91,10 @@ const translations = {
     navContact: "Contacto",
     languageLabel: "Idioma",
     themeLabel: "Tema",
+    introLabel: "Presentaci\u00f3n personal",
+    navLabel: "Navegaci\u00f3n principal",
+    controlsGroupLabel: "Ajustes de visualizaci\u00f3n",
+    socialsLabel: "Enlaces sociales",
     aboutKicker: "Sobre m\u00ed",
     aboutTitle: "Soporte IT pr\u00e1ctico y desarrollo web para negocios reales.",
     aboutOne:
@@ -128,12 +145,21 @@ const translations = {
     contactKicker: "Contacto",
     contactTitle: "Disponible para trabajo remoto en desarrollo web y soporte IT.",
     contactCopy:
-      "Si necesit\u00e1s alguien que pueda moverse entre c\u00f3digo frontend, soporte pr\u00e1ctico y soluci\u00f3n de problemas de red, escribime.",
+      "Si necesit\u00e1s alguien que pueda moverse entre desarrollo web, soporte pr\u00e1ctico y soluci\u00f3n de problemas de red, escribime.",
     emailMe: "Enviar email",
     downloadCv: "Descargar CV",
     footer: "Dise\u00f1ado y construido por Enzo Gomez. Basado en trabajo real de IT y pr\u00e1ctica de desarrollo web.",
     themeDark: "Oscuro",
     themeLight: "Claro",
+    languageEnglish: "Ingl\u00e9s",
+    languageSpanish: "Espa\u00f1ol",
+    switchToEnglish: "cambiar a ingl\u00e9s",
+    switchToSpanish: "cambiar a espa\u00f1ol",
+    themeLabelDark: "Oscuro",
+    themeLabelLight: "Claro",
+    switchToDark: "cambiar a modo oscuro",
+    switchToLight: "cambiar a modo claro",
+    opensNewTab: "se abre en una nueva pesta\u00f1a",
   },
 };
 
@@ -151,6 +177,28 @@ const storedTheme = localStorage.getItem("portfolio-theme");
 let currentLanguage = storedLanguage === "es" ? "es" : "en";
 let currentTheme = storedTheme === "light" ? "light" : "dark";
 let pointerFrame = 0;
+const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+function updateExternalLinkLabels() {
+  document.querySelectorAll('a[target="_blank"]').forEach((link) => {
+    const label = link.textContent.trim();
+    link.setAttribute("aria-label", `${label}, ${translations[currentLanguage].opensNewTab}`);
+  });
+}
+
+function updateControlLabels() {
+  const languageName =
+    currentLanguage === "en" ? translations[currentLanguage].languageEnglish : translations[currentLanguage].languageSpanish;
+  const nextLanguage = currentLanguage === "en" ? translations[currentLanguage].switchToSpanish : translations[currentLanguage].switchToEnglish;
+  const themeName =
+    currentTheme === "dark" ? translations[currentLanguage].themeLabelDark : translations[currentLanguage].themeLabelLight;
+  const nextTheme = currentTheme === "dark" ? translations[currentLanguage].switchToLight : translations[currentLanguage].switchToDark;
+
+  languageButton.setAttribute("aria-label", `${translations[currentLanguage].languageLabel}: ${languageName}; ${nextLanguage}.`);
+  languageButton.setAttribute("aria-pressed", String(currentLanguage === "es"));
+  themeButton.setAttribute("aria-label", `${translations[currentLanguage].themeLabel}: ${themeName}; ${nextTheme}.`);
+  themeButton.setAttribute("aria-pressed", String(currentTheme === "dark"));
+}
 
 function applyLanguage(language) {
   currentLanguage = language;
@@ -159,9 +207,15 @@ function applyLanguage(language) {
     const key = element.dataset.i18n;
     element.textContent = translations[language][key];
   });
+  document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+    const key = element.dataset.i18nAriaLabel;
+    element.setAttribute("aria-label", translations[language][key]);
+  });
   languageCurrent.textContent = language.toUpperCase();
   themeCurrent.textContent =
     currentTheme === "dark" ? translations[language].themeDark : translations[language].themeLight;
+  updateControlLabels();
+  updateExternalLinkLabels();
   localStorage.setItem("portfolio-language", language);
 }
 
@@ -171,6 +225,7 @@ function applyTheme(theme) {
   themeMeta.setAttribute("content", theme === "dark" ? "#07111f" : "#f6f8fb");
   themeCurrent.textContent =
     theme === "dark" ? translations[currentLanguage].themeDark : translations[currentLanguage].themeLight;
+  updateControlLabels();
   localStorage.setItem("portfolio-theme", theme);
 }
 
@@ -183,7 +238,7 @@ themeButton.addEventListener("click", () => {
 });
 
 window.addEventListener("pointermove", (event) => {
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (reducedMotionQuery.matches) return;
   if (pointerFrame) return;
 
   pointerFrame = requestAnimationFrame(() => {
@@ -193,33 +248,39 @@ window.addEventListener("pointermove", (event) => {
   });
 });
 
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.12 }
-);
+if ("IntersectionObserver" in window) {
+  document.documentElement.classList.add("has-reveal");
 
-reveals.forEach((section) => revealObserver.observe(section));
-
-const navObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      const active = `#${entry.target.id}`;
-      navLinks.forEach((link) => {
-        link.classList.toggle("active", link.getAttribute("href") === active);
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
       });
-    });
-  },
-  { rootMargin: "-35% 0px -55% 0px" }
-);
+    },
+    { threshold: 0.12 }
+  );
 
-sections.forEach((section) => navObserver.observe(section));
+  reveals.forEach((section) => revealObserver.observe(section));
+}
+
+if ("IntersectionObserver" in window) {
+  const navObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const active = `#${entry.target.id}`;
+        navLinks.forEach((link) => {
+          link.classList.toggle("active", link.getAttribute("href") === active);
+        });
+      });
+    },
+    { rootMargin: "-35% 0px -55% 0px" }
+  );
+
+  sections.forEach((section) => navObserver.observe(section));
+}
 applyLanguage(currentLanguage);
 applyTheme(currentTheme);
