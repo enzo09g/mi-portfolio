@@ -23,7 +23,7 @@ const translations = {
     aboutThree:
       "I also use AI-assisted development tools such as Claude Code, OpenAI Codex, Cursor, and prompt-based workflows to move faster while keeping code practical and maintainable.",
     experienceKicker: "Experience",
-    experienceDate: "2024 - Present",
+    experienceDate: "2021 - Present",
     experienceTitle: "IT Technician / Web Developer - El Corral\u00f3n",
     experienceIntro:
       "Built and maintained the company website while supporting the daily technical operations behind workstations, networks, and internal users.",
@@ -104,7 +104,7 @@ const translations = {
     aboutThree:
       "Tambi\u00e9n uso herramientas de desarrollo asistido por IA como Claude Code, OpenAI Codex, Cursor y flujos basados en prompts para avanzar m\u00e1s r\u00e1pido sin perder practicidad.",
     experienceKicker: "Experiencia",
-    experienceDate: "2024 - Presente",
+    experienceDate: "2021 - Presente",
     experienceTitle: "T\u00e9cnico IT / Desarrollador Web - El Corral\u00f3n",
     experienceIntro:
       "Constru\u00ed y mantuve el sitio web de la empresa mientras daba soporte a las operaciones t\u00e9cnicas diarias de equipos, redes y usuarios internos.",
